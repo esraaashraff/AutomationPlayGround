@@ -1,5 +1,6 @@
 package pages;
 
+import org.example.driverfactory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,7 +10,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class ExistingSignup {
-    public WebDriver driver;
+
+    public Driver driver;
         By newUser = By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/h2");
         By ClickonSignUplogin= By.xpath("//a[@href=\"/login\"]");
         By Entername = By.xpath("//input[@name=\"name\"]");
@@ -17,25 +19,24 @@ public class ExistingSignup {
         By ClickOnSignUPButton = By.xpath("//button[@data-qa=\"signup-button\"]");
         By existingmessage= By.cssSelector("#form > div > div > div:nth-child(3) > div > form > p");
 
-        public ExistingSignup(WebDriver driver) {
+        public ExistingSignup(Driver driver) {
             this.driver=driver;
     }
 
-
     public void checkthatNewUSerappears(){
-        Assert.assertTrue(driver.findElement(newUser).isDisplayed());
-            Assert.assertEquals(driver.findElement(newUser).getText(),"New User Signup!");
+        Assert.assertTrue(driver.element().isDisplayed(newUser),"New User Signup!");
+            Assert.assertEquals(driver.element().gettextof(newUser),"New User Signup!");
 
     }
 
     public void filldata(String name, String email){
-            driver.findElement(ClickonSignUplogin).click();
-            driver.findElement(Entername).sendKeys(name);
-            driver.findElement(EnterEmail).sendKeys(email);
-            driver.findElement(ClickOnSignUPButton).click();
+            driver.element().click(ClickonSignUplogin);
+            driver.element().fillfield(Entername,name);
+            driver.element().fillfield(EnterEmail,email);
+            driver.element().click(ClickOnSignUPButton);
     }
     public void checkthatemailisexisting(){
-
+        Assert.assertTrue(driver.element().isDisplayed(existingmessage),"Email Address already exist!");
     }
 
 }

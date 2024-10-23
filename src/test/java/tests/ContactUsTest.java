@@ -17,65 +17,58 @@ import pages.Homepage;
 import java.time.Duration;
 
 public class ContactUsTest {
-    //WebDriverWait wait;
     Homepage homepage;
     Contactus contactus;
-    WebDriver driver;
-    //ThreadLocal<Driver> driver;
+    Driver driver;
 
     @BeforeClass
     @Parameters(value = {"browserName"})
     public void setUp(@Optional("EDGE") String browserName){
-//wait = new WebDriverWait(this.driver, Duration.ofSeconds(40));
-        driver= Driver.getDriver("Chrome" ).startdriver();
-//driver=new ThreadLocal<>();
-       // driver.set(new Driver(browserName));
-        driver.manage().window().maximize();
-        driver.navigate().to("https://automationexercise.com/");
+        driver= new Driver("Chrome");
+        driver.browserAction().MaximizeWindow();
+        driver.browserAction().navigateToURL("https://automationexercise.com/");
 
     }
 
     @Test
-    public void test(){
-        new ElementActions(driver)
-        .hoveronAnItem(By.xpath("(//div[@class=\"product-overlay\"])[1]"));
-        //.ClickonAnItem(By.cssSelector("btn.btn-default.add-to-cart"));
-       // driver.element().hoveronAnItem(By.xpath("(//div[@class=\"product-overlay\"])[1]"));
-        //     .click(By.xpath("(//a[@class=\"btn btn-default add-to-cart\"])[1]"));
-        driver.navigate().to("https://automationexercise.com/contact_us");
+    public void test() {
 
         new Homepage(driver)
                 .clickoncontactus();
+
         new Contactus(driver)
                 .checkthatcontactuspageisloadedsuccessfully()
-                .datafill("Esraa", "esraa@gmail.com","hello","Iam happu to see you")
+                .datafill("Esraa", "esraa@gmail.com", "Contact Message", "Thank you for making this website easy to use!")
                 .successContact();
-        ScreenShotManager.captureScreenShot(driver,"ContactUs" );
-
-        //wait.until(ExpectedConditions.alertIsPresent());
     }
+//    new ElementActions(driver.get())
+//            .hoveronAnItem(By.xpath("(//div[@class=\"product-overlay\"])[1]"));
+//        driver.element().hoveronAnItem(By.xpath("(//div[@class=\"product-overlay\"])[1]"));
+//        driver.element().ClickonAnItem(By.xpath("(//div[@class=\"product-overlay\"])[1]"));
+//        driver.get().navigate().to("https://automationexercise.com/contact_us");
+//    //ScreenShotManager.captureScreenShot(driver,"ContactUs" );
 
-    @AfterMethod
-    public void ScreenshotOnFailure(ITestResult result){
-        if (result.getStatus()==ITestResult.FAILURE)
-            System.out.println("Test is Faild");
-            System.out.println("Taking Screenshot");
-        ScreenShotManager.captureScreenShot(driver, result.getName() );
-
-    }
-
-    @AfterMethod
-    public void ScreenshotOnSuccess(ITestResult result){
-        if (result.getStatus()==ITestResult.SUCCESS)
-            System.out.println("Test is Successed");
-        System.out.println("Taking Screenshot");
-        ScreenShotManager.captureScreenShot(driver, result.getName() );
-
-
-    }
+//    @AfterMethod
+//    public void ScreenshotOnFailure(ITestResult result){
+//        if (result.getStatus()==ITestResult.FAILURE)
+//            System.out.println("Test is Faild");
+//            System.out.println("Taking Screenshot");
+//        ScreenShotManager.captureScreenShot(driver, result.getName() );
+//
+//    }
+//
+//    @AfterMethod
+//    public void ScreenshotOnSuccess(ITestResult result){
+//        if (result.getStatus()==ITestResult.SUCCESS)
+//            System.out.println("Test is Successed");
+//        System.out.println("Taking Screenshot");
+//        ScreenShotManager.captureScreenShot(driver, result.getName() );
+//
+//
+//    }
     @AfterTest
     public void teardown(){
-        driver.manage().deleteAllCookies();
-
+        driver.browserAction().DeleteAllCookies();
+        driver.quit();
     }
 }

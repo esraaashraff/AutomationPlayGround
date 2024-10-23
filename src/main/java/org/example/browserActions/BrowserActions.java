@@ -66,5 +66,16 @@ public class BrowserActions {
     }
 
     //--------------Controlling Window------------------\\
-
+    public BrowserActions MaximizeWindow() {
+        driver.manage().window().maximize();
+        return this;
+    }
+    public BrowserActions MinimizeWindow() {
+        driver.manage().window().minimize();
+        return this;
+    }
+    public BrowserActions Window() {
+        driver.manage().window().getSize();
+        return this;
+    }
 }

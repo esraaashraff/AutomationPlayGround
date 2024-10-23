@@ -8,18 +8,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
 public class Driver {
-   // WebDriver driver;
-   private ThreadLocal<WebDriver> driver;
+   public WebDriver driver;
+    public Driver (String driverType){
+        driver= getDriver(driverType).startdriver();
+    }
 
-   /* public Driver(String driverType) {
-        WebDriver undecoratedDriver = getDriver(driverType).startdriver();
-        assert undecoratedDriver != null;
-
-       driver = new ThreadLocal<>();
-        driver.set(new EventFiringDecorator<>(org.openqa.selenium.WebDriver.class,
-                new WebDriverListeners(undecoratedDriver))
-                .decorate(undecoratedDriver));
-    } */
     public static DriverInterface getDriver(String browsertype) {
 
         switch (browsertype) {
@@ -38,18 +31,17 @@ public class Driver {
         }
     }
     public WebDriver get() {
-        return driver.get();
+        return driver;
     }
     public void quit() {
-        driver.get().quit();
-        driver.remove();
+        driver.quit();
     }
 
     public ElementActions element() {
-        return new ElementActions(driver.get());
+        return new ElementActions(driver);
     }
 
-    public BrowserActions browser() {
-        return new BrowserActions(driver.get());
+    public BrowserActions browserAction() {
+        return new BrowserActions(driver);
     }
 }

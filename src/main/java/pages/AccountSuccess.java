@@ -6,27 +6,27 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class AccountSuccess {
-   // public WebDriver driver;
-public WebDriver driver;
+
+    public Driver driver;
 
     By successMessage= By.xpath("//h2[@data-qa=\"account-created\"]");
     By continueButton = By.xpath("//a[@data-qa=\"continue-button\"]");
 
-    public AccountSuccess(WebDriver driver){
+    public AccountSuccess(Driver driver){
         this.driver=driver;
     }
 
     //------Assertions------
 
     public AccountSuccess checkthataccountshouldbecreatedsuccessfully(){
-        Assert.assertTrue(driver.findElement(successMessage).isDisplayed());
-        Assert.assertEquals(driver.findElement(successMessage).getText(), "ACCOUNT CREATED!");
+        Assert.assertTrue(driver.element().isDisplayed(successMessage),"ACCOUNT CREATED!");
+        Assert.assertEquals(driver.element().gettextof(successMessage), "ACCOUNT CREATED!");
         return this;
     }
 
     ///Actions\\\
     public AccountSuccess continuebutton(){
-        driver.findElement(continueButton).click();
+        driver.element().click(continueButton);
         return this;
     }
 }

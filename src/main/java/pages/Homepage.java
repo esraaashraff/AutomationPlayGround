@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class Homepage {
-    //public WebDriver driver;
-    public WebDriver driver;
+    public Driver driver;
 
     By logoutlink = By.xpath("//a[@href=\"/logout\"]");
     By loginlink = By.xpath("//a[@href=\"/login\"]");
@@ -15,19 +14,19 @@ public class Homepage {
     By contactus = By.xpath("//a[@href=\"/contact_us\"]");
 
 
-    public Homepage(WebDriver driver){
+    public Homepage(Driver driver){
         this.driver=driver;
     }
 
     //-----Assertions-----\\
 
     public Homepage checkthatLogoutLinkisDisplayed(){
-        Assert.assertTrue(driver.findElement(logoutlink).isDisplayed(), "login link isn't displayed");
+        Assert.assertTrue(driver.element().isDisplayed(logoutlink), "login link isn't displayed");
         return this;
     }
 
     public Homepage checkthatDeleteaccountLinkisDisplayed(){
-        Assert.assertTrue(driver.findElement(Deleteaccount).isDisplayed(), "Deleteaccount link isn't displayed");
+        Assert.assertTrue(driver.element().isDisplayed(Deleteaccount), "Deleteaccount link isn't displayed");
     return this;
     }
 
@@ -35,17 +34,17 @@ public class Homepage {
 
     //------Methods of Actions-----\\
     public LoginSignUpPage clickonLoginlink(){
-        driver.findElement(loginlink).click();
+        driver.element().click(loginlink);
         return new LoginSignUpPage(driver);
     }
 
     public LoginSignUpPage clickonLogoutlink() {
-        driver.findElement(logoutlink).click();
+        driver.element().click(logoutlink);
         return new LoginSignUpPage(driver); }
 
 
     public Homepage clickoncontactus(){
-        driver.findElement(contactus).click();
+        driver.element().click(contactus);
         return new Homepage(driver); }
 
 }

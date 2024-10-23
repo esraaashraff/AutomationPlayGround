@@ -6,33 +6,31 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class Deleteaccount {
-
-       // public WebDriver driver;
-    public WebDriver driver;
+    public Driver driver;
         By deletebutton = By.xpath("//a[@href=\"/delete_account\"]");
         By deleteMessage= By.xpath("//h2[@data-qa=\"account-deleted\"]");
         By continuetwoButton = By.xpath("//a[@data-qa=\"continue-button\"]");
 
-        public Deleteaccount(WebDriver driver){
+        public Deleteaccount(Driver driver){
             this.driver=driver;
         }
 
-        //------Assertions------
+        ////////////------Assertions------\\\\\\\\\\\\\\\\\
 
         public Deleteaccount checkthataccountshouldbedeletedsuccessfully(){
-            Assert.assertTrue(driver.findElement(deleteMessage).isDisplayed());
-            Assert.assertEquals(driver.findElement(deleteMessage).getText(), "ACCOUNT DELETED!");
+            Assert.assertTrue(driver.element().isDisplayed(deleteMessage), "ACCOUNT DELETED!");
+            Assert.assertEquals(driver.element().gettextof(deleteMessage), "ACCOUNT DELETED!");
             return this;
         }
 
-        ///Actions\\\
+        /////////////------Actions---------\\\\\\\\\\\\\\\
         public Deleteaccount deletebutton(){
-            driver.findElement(deletebutton).click();
+            driver.element().click(deletebutton);
             return this;
         }
 
         public Homepage continuetwoo(){
-            driver.findElement(continuetwoButton).click();
+            driver.element().click(continuetwoButton);
             return new Homepage(driver);
         }
     }

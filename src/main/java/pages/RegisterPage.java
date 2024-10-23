@@ -6,10 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class RegisterPage {
-   // public WebDriver driver;
-        WebDriver driver;
 
-//By pagetitle= By
+public Driver driver;
+
+ By title = By.xpath("(//h2[@class=\"title text-center\"])[1]");
  By password= By.id("password");
  By firstName= By.id("first_name");
  By lastName= By.id("last_name");
@@ -24,67 +24,67 @@ public class RegisterPage {
 
  By createButton = By.xpath("//button[@data-qa=\"create-account\"]");
 
- /////Methods///
+ ///////////////////Methods////////////////////////////
 
-public RegisterPage(WebDriver driver){
+public RegisterPage(Driver driver){
     this.driver=driver;
 }
 
 public RegisterPage enterpassword( String pass){
-    driver.findElement(password).sendKeys(pass);
+    driver.element().fillfield(password, pass);
     return this;
 }
 
     public RegisterPage enterfirstname( String fname){
-        driver.findElement(firstName).sendKeys(fname);
+        driver.element().fillfield(firstName , fname);
         return this;
     }
 
     public RegisterPage enterlastname( String lname){
-        driver.findElement(lastName).sendKeys(lname);
+        driver.element().fillfield(lastName, lname);
         return this;
     }
 
     public RegisterPage enteraddress( String add){
-        driver.findElement(Address).sendKeys(add);
+        driver.element().fillfield(Address, add);
         return this;
     }
 
     public RegisterPage enterstate( String stat){
-        driver.findElement(state).sendKeys(stat);
+        driver.element().fillfield(state,stat);
         return this;
     }
 
     public RegisterPage entercity( String cit){
-        driver.findElement(city).sendKeys(cit);
+        driver.element().fillfield(city, cit);
         return this;
 }
 
 
     public RegisterPage enterzipcode( String zip){
-        driver.findElement(zipcode).sendKeys(zip);
+        driver.element().fillfield(zipcode , zip);
         return this;
     }
 
     public RegisterPage entermobileno( String mobno){
-        driver.findElement(mobileNumber).sendKeys(mobno);
+        driver.element().fillfield(mobileNumber, mobno);
         return this;
     }
 
     public RegisterPage entercountry(){
-        driver.findElement(country).click();
-        Select select= new Select(driver.findElement(country));
+        driver.element().click(country);
+        Select select= new Select(driver.get().findElement(country));
         select.selectByValue("Canada");
         return this;
     }
 
     public RegisterPage chooseoption(String op){
-        driver.findElement(option).sendKeys(op);
+        driver.element().fillfield(option, op);
         return this;
     }
 
     public AccountSuccess clickoncreateButton(){
-        driver.findElement(createButton).click();
+        driver.element().click(createButton);
         return new AccountSuccess(driver);
     }
 }
