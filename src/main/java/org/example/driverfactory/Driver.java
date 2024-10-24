@@ -13,6 +13,7 @@ public class Driver {
         driver= getDriver(driverType).startdriver();
     }
 
+
     public static DriverInterface getDriver(String browsertype) {
 
         switch (browsertype) {

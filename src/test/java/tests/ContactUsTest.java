@@ -40,6 +40,8 @@ public class ContactUsTest {
                 .checkthatcontactuspageisloadedsuccessfully()
                 .datafill("Esraa", "esraa@gmail.com", "Contact Message", "Thank you for making this website easy to use!")
                 .successContact();
+        ScreenShotManager.captureScreenShot(driver.get(), "ContactUS");
+
     }
 //    new ElementActions(driver.get())
 //            .hoveronAnItem(By.xpath("(//div[@class=\"product-overlay\"])[1]"));

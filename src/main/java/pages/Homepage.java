@@ -12,7 +12,7 @@ public class Homepage {
     By loginlink = By.xpath("//a[@href=\"/login\"]");
     By Deleteaccount = By.xpath("//a[@href=\"/delete_account\"]");
     By contactus = By.xpath("//a[@href=\"/contact_us\"]");
-
+    By ProductLink = By.xpath( "//a[@href=\"/products\"]");
 
     public Homepage(Driver driver){
         this.driver=driver;
@@ -43,8 +43,22 @@ public class Homepage {
         return new LoginSignUpPage(driver); }
 
 
-    public Homepage clickoncontactus(){
+    public Contactus clickoncontactus(){
         driver.element().click(contactus);
-        return new Homepage(driver); }
+        return new Contactus(driver); }
 
+    public ProductsPage clickOnProductLink()
+    {
+        driver.get().findElement(ProductLink).click();
+        return  new  ProductsPage (driver);
+    }
+    public  Homepage navigateToHomePage()
+    {
+        driver.browserAction().navigateToURL("https://automationexercise.com/");
+        return this;
+    }
+    public Homepage checkThatUserIsNavigatedToHomePage()
+    {
+        Assert.assertTrue(driver.browserAction().getCurrentURL().contentEquals("https://automationexercise.com/"));
+        return this; }
 }

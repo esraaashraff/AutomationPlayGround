@@ -11,17 +11,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class ScreenShotManager {
-    static String screenshotDirectorypath = "./screenshots";
+public class ScreenShotManager
+{
+    private static String screenShotDirectoryPath = "./screenshots";
+    File screenShotDirectory = new File(screenShotDirectoryPath);
 
-    File screenshotDirectory = new File(screenshotDirectorypath);
-    public static void captureScreenShot(WebDriver driver, String screenshotname) {
-        Path destination= Paths.get(screenshotDirectorypath, screenshotname + "jpg");
-        byte[] byteArray = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+
+
+    public static void captureScreenShot(WebDriver driver , String screenShotName)
+    {
+        Path destination = Paths.get(screenShotDirectoryPath,screenShotName +".jpg");
+        byte[] byteArray =((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
         try {
-            Files.write(destination, byteArray, StandardOpenOption.CREATE);
+            Files.write(destination,byteArray, StandardOpenOption.CREATE);
         } catch (IOException e) {
-            System.out.println("Unable to save Screenshot");
+            System.out.println("Unable to save screenshot");
         }
+
+
     }
+
 }

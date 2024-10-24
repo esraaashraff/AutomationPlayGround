@@ -2,6 +2,8 @@ package org.example.browserActions;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.bidi.module.Input;
 import org.openqa.selenium.interactions.Actions;
 
 public class BrowserActions {
@@ -77,5 +79,9 @@ public class BrowserActions {
     public BrowserActions Window() {
         driver.manage().window().getSize();
         return this;
+    }
+
+    public Input moveToElement(WebElement element) {
+        return null;
     }
 }
